@@ -56,16 +56,16 @@ public class SpotifyRepository {
     }
 
     public Album createAlbum(String title, String artistName) {
-        Artist artist = null;
+        Artist artist1 = null;
 
-        for(Artist artist1:artists){
-            if(artist1.getName()==artistName){
-                artist=artist;
+        for(Artist artist:artists){
+            if(artist.getName()==artistName){
+                artist1=artist;
                 break;
             }
         }
-        if(artist==null){
-            artist = createArtist(artistName);
+        if(artist1==null){
+            artist1 = createArtist(artistName);
 
             Album album = new Album();
 
@@ -76,7 +76,7 @@ public class SpotifyRepository {
 
             List<Album> l = new ArrayList<>();
             l.add(album);
-            artistAlbumMap.put(artist,l);
+            artistAlbumMap.put(artist1,l);
 
             return album;
         }else {
@@ -87,12 +87,12 @@ public class SpotifyRepository {
 
             albums.add(album);
 
-            List<Album> l = artistAlbumMap.get(artist);
+            List<Album> l = artistAlbumMap.get(artist1);
             if(l == null){
                 l = new ArrayList<>();
             }
             l.add(album);
-            artistAlbumMap.put(artist,l);
+            artistAlbumMap.put(artist1,l);
 
             return album;
         }
@@ -116,6 +116,10 @@ public class SpotifyRepository {
             song.setLikes(0);
 
             songs.add(song);
+
+//            List<Song> l = albumSongMap.get(album);
+//            l.add(song);
+//            albumSongMap.put(album,l);
 
             if(albumSongMap.containsKey(album)){
                 List<Song> l = albumSongMap.get(album);
@@ -164,6 +168,10 @@ public class SpotifyRepository {
             playlistListenerMap.put(playlist,list);
 
             creatorPlaylistMap.put(user,playlist);
+
+//            List<Playlist> userPlayList = userPlaylistMap.get(user);  //error possibility
+//            userPlayList.add(playlist);
+//            userPlaylistMap.put(user,userPlayList);
 
             if(userPlaylistMap.containsKey(user)){
                 List<Playlist> userPlayList = userPlaylistMap.get(user);
