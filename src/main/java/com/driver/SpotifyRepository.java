@@ -38,6 +38,7 @@ public class SpotifyRepository {
     }
 
     public User createUser(String name, String mobile) {
+
     }
 
     public Artist createArtist(String name) {
